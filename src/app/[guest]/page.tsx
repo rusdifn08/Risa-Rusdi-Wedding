@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
 import { wedding } from "@/config/wedding";
 import { secondsRemaining } from "@/lib/date";
-import { resolveGuestName } from "@/lib/guest";
+import { slugToGuestName } from "@/lib/guest";
 import { buildEventJsonLd, buildGuestMetadata } from "@/lib/seo";
 import { InvitationTemplate } from "@/components/templates/InvitationTemplate";
 
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
+type GuestParams = Promise<{ guest: string }>;
 
-/** Metadata dinamis per-tamu via query `?to=Nama+Tamu`. */
+/**
+ * Route undangan personal: /firman-ardiansyah → "Firman Ardiansyah".
+ * Slug dikonversi ke Title Case; nama tamu ikut tampil di cover,
+ * metadata, dan OG image WhatsApp.
+ */
 export async function generateMetadata({
-  searchParams,
+  params,
 }: {
-  searchParams: SearchParams;
+  params: GuestParams;
 }): Promise<Metadata> {
-  return buildGuestMetadata(resolveGuestName((await searchParams).to));
+  const { guest } = await params;
+  return buildGuestMetadata(slugToGuestName(guest));
 }
 
-export default async function Page({ searchParams }: PageProps<"/">) {
-  const guestName = resolveGuestName((await searchParams).to);
+export default async function GuestPage({ params }: { params: GuestParams }) {
+  const { guest } = await params;
+  const guestName = slugToGuestName(guest);
   const initialCountdownSeconds = secondsRemaining(wedding.countdownTargetIso);
 
   return (

@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
+/* Dark mode berbasis class .dark pada <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Semantic tokens — Light (Premium Vintage Botanical) ────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Off-White / Cream — latar kartu klasik */
+  --background: #f2f0e9;
+  --surface: #f8f7f1;
+  --surface-2: #e9e6db;
+  /* Dark Slate Blue — teks utama & banner */
+  --foreground: #3b5964;
+  --muted: #6e7f86;
+  --line: #d6d1c3;
+  /* Antique Gold — bingkai lengkung & detail */
+  --gold: #c7a252;
+  --gold-strong: #a98842;
+  --on-gold: #f8f7f1;
+  --blue: #3b5964;
+  --blue-strong: #2e4750;
+  --on-blue: #f2f0e9;
+  /* Dusty Blue — ilustrasi pemandangan & pilar */
+  --dusty: #a9bcc6;
+  /* Muted Sage — dedaunan vintage */
+  --sage: #8a9b79;
+  --sage-strong: #6f805c;
+  /* Dusty Rose — mawar */
+  --blush: #d89ba4;
+  --blush-strong: #c08089;
+  /* Pale Yellow — aksen kelopak */
+  --yellow: #ead386;
+}
+
+/* ── Semantic tokens — Dark (night garden) ──────────────────────────── */
+.dark {
+  --background: #121c22;
+  --surface: #1a262e;
+  --surface-2: #233240;
+  --foreground: #e6e9e3;
+  --muted: #94a6ad;
+  --line: #2e4049;
+  --gold: #c7a252;
+  --gold-strong: #d9b96e;
+  --on-gold: #1a262e;
+  --blue: #9fb9c4;
+  --blue-strong: #b5cbd4;
+  --on-blue: #121c22;
+  --dusty: #a9bcc6;
+  --sage: #a3b394;
+  --sage-strong: #b7c5aa;
+  --blush: #e2aeb6;
+  --blush-strong: #ecc4ca;
+  --yellow: #ead386;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --color-on-gold: var(--on-gold);
+  --color-blue: var(--blue);
+  --color-blue-strong: var(--blue-strong);
+  --color-on-blue: var(--on-blue);
+  --color-dusty: var(--dusty);
+  --color-sage: var(--sage);
+  --color-sage-strong: var(--sage-strong);
+  --color-blush: var(--blush);
+  --color-blush-strong: var(--blush-strong);
+  --color-yellow: var(--yellow);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), "Iowan Old Style", Georgia, serif;
+  --font-script: var(--font-greatvibes), "Segoe Script", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ───────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+::selection {
+  background-color: var(--gold);
+  color: var(--on-gold);
+}
+
+/* Angka countdown agar lebar stabil */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyframes eksplisit untuk animasi arbitrer (cincin disc musik) */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pita marquee memudar di tepi kiri-kanan */
+.marquee-fade {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Tekstur kertas vintage (grain SVG halus di atas seluruh halaman) */
+.paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+.dark .paper-texture {
+  mix-blend-mode: screen;
+  opacity: 0.04;
 }
