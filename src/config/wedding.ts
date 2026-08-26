@@ -57,14 +57,12 @@ export const wedding: WeddingConfig = {
   },
   countdownTargetIso: "2027-01-25T08:00:00+07:00",
   gallery: [
-    { src: "/images/gallery-1.jpg", alt: "Momen bahagia kami — berkeliling kota", ratio: "portrait" },
-    { src: "/images/gallery-2.jpg", alt: "Momen bahagia kami — kebersamaan", ratio: "square" },
-    { src: "/images/gallery-3.jpg", alt: "Momen bahagia kami — cerita perjalanan", ratio: "portrait" },
-    { src: "/images/gallery-4.jpg", alt: "Momen bahagia kami — petualangan", ratio: "square" },
-    { src: "/images/gallery-5.jpg", alt: "Momen bahagia kami — senja bersama", ratio: "portrait" },
-    { src: "/images/gallery-6.jpg", alt: "Momen bahagia kami — di puncak", ratio: "landscape" },
-    { src: "/images/gallery-7.jpg", alt: "Ilustrasi air mancur & burung taman", ratio: "portrait" },
-    { src: "/images/gallery-8.jpg", alt: "Ilustrasi gerbang mawar taman", ratio: "landscape" },
+    { src: "/image/1.jpg", alt: "Momen bahagia Risa & Rusdi — 1", ratio: "portrait" },
+    { src: "/image/2.jpg", alt: "Momen bahagia Risa & Rusdi — 2", ratio: "portrait" },
+    { src: "/image/3.jpg", alt: "Momen bahagia Risa & Rusdi — 3", ratio: "portrait" },
+    { src: "/image/4.jpg", alt: "Momen bahagia Risa & Rusdi — 4", ratio: "landscape" },
+    { src: "/image/5.jpg", alt: "Momen bahagia Risa & Rusdi — 5", ratio: "portrait" },
+    { src: "/image/6.jpg", alt: "Momen bahagia Risa & Rusdi — 6", ratio: "portrait" },
   ],
   gifts: {
     accounts: [
