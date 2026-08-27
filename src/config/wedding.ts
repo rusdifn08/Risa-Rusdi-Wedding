@@ -12,7 +12,7 @@ export const wedding: WeddingConfig = {
       fullName: "Risa Hanipah, A.Md.Ak",
       parents: "Putri pertama dari Bapak Iwan Setiawan & Ibu Nenden Halimah",
       photo: "/images/couple-risa.jpg",
-      instagram: "risahanipah",
+      instagram: "risaha15",
     },
     groom: {
       role: "groom",
@@ -20,7 +20,7 @@ export const wedding: WeddingConfig = {
       fullName: "Rusdi Fadli Nuryuda, S.Pd",
       parents: "Putra kedua dari Bapak Wahyu Turnawan & Ibu Neneng Nurlaela",
       photo: "/images/couple-rusdi.jpg",
-      instagram: "rusdifadli",
+      instagram: "rusdivfx",
     },
     quote: {
       text: "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",

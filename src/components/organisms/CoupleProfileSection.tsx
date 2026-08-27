@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { BodyText } from "@/components/atoms/Typography";
 import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
@@ -5,9 +8,10 @@ import { OrnamentDivider } from "@/components/molecules/OrnamentDivider";
 import { DepthReveal } from "@/components/motion/DepthReveal";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { Reveal } from "@/components/motion/Reveal";
+import { Icon } from "@/components/atoms/Icon";
 import { wedding } from "@/config/wedding";
 
-/** Organism: Profil Mempelai — kutipan, kartu 3D tilt, pengantar (PRD §3.2). */
+/** Organism: Profil Mempelai — kutipan, kartu 3D tilt, pengantar, animasi cinta (PRD §3.2). */
 export function CoupleProfileSection() {
   const { bride, groom, quote, openingMessage } = wedding.couple;
 
@@ -50,11 +54,33 @@ export function CoupleProfileSection() {
               <ProfileCard member={bride} />
             </TiltCard>
           </DepthReveal>
-          <Reveal delay={0.15} className="hidden sm:block">
-            <p className="pt-24 font-script text-5xl text-gold" aria-hidden="true">
+
+          {/* Animasi Lucu & Romantis di Tengah (Desktop) */}
+          <div className="hidden flex-col items-center justify-center gap-2 pt-20 sm:flex" aria-hidden="true">
+            <motion.div
+              animate={{ scale: [1, 1.18, 1, 1.12, 1], rotate: [0, -4, 4, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative font-script text-6xl text-gold"
+            >
               &amp;
-            </p>
-          </Reveal>
+              <motion.span
+                animate={{ scale: [0, 1.2, 0], opacity: [0, 1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                className="absolute -right-2 -top-1 text-xs"
+              >
+                ✨
+              </motion.span>
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -3, 0], scale: [1, 1.15, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="flex items-center gap-1 rounded-full border border-gold/30 bg-gold/10 px-2 py-0.5 text-[10px] text-gold"
+            >
+              <Icon name="heart" className="size-3 fill-gold" />
+              <span>Selamanya</span>
+            </motion.div>
+          </div>
+
           <DepthReveal delay={0.25} rotateX={12} rotateY={6}>
             <TiltCard maxTilt={9}>
               <ProfileCard member={groom} />
@@ -62,11 +88,23 @@ export function CoupleProfileSection() {
           </DepthReveal>
         </div>
 
-        <Reveal delay={0.1} className="sm:hidden">
-          <p className="text-center font-script text-5xl text-gold" aria-hidden="true">
+        {/* Animasi Lucu & Romantis di Tengah (Mobile) */}
+        <div className="flex flex-col items-center justify-center gap-1 sm:hidden" aria-hidden="true">
+          <motion.p
+            animate={{ scale: [1, 1.15, 1, 1.1, 1] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            className="text-center font-script text-5xl text-gold"
+          >
             &amp;
-          </p>
-        </Reveal>
+          </motion.p>
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity }}
+            className="flex items-center gap-1 text-xs text-gold"
+          >
+            <Icon name="heart" className="size-3 fill-gold" />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
